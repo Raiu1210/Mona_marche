@@ -1,0 +1,432 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B0399F422C64F5F005AC410 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B0399F322C64F5F005AC410 /* GoogleService-Info.plist */; };
+		3BB129F022C48B39004C4329 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB129EF22C48B39004C4329 /* AppDelegate.swift */; };
+		3BB129F522C48B39004C4329 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB129F322C48B39004C4329 /* Main.storyboard */; };
+		3BB129F722C48B3B004C4329 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB129F622C48B3B004C4329 /* Assets.xcassets */; };
+		3BB129FA22C48B3B004C4329 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB129F822C48B3B004C4329 /* LaunchScreen.storyboard */; };
+		3BB12A0622C48C89004C4329 /* track.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB12A0522C48C89004C4329 /* track.png */; };
+		3BB12A0822C48C91004C4329 /* cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB12A0722C48C91004C4329 /* cart.png */; };
+		3BB12A0C22C492E0004C4329 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB12A0B22C492E0004C4329 /* ShoppingViewController.swift */; };
+		3BB12A0E22C49335004C4329 /* ExhibitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB12A0D22C49335004C4329 /* ExhibitingViewController.swift */; };
+		3BB12A1022C5C79B004C4329 /* FirstRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB12A0F22C5C79B004C4329 /* FirstRegistrationViewController.swift */; };
+		B647EFE13542505752036EAC /* Pods_Mona_marche.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E987DA1BAE9CA6E90E43C1DA /* Pods_Mona_marche.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3B0399F322C64F5F005AC410 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3BB129EC22C48B39004C4329 /* Mona_marche.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mona_marche.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BB129EF22C48B39004C4329 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3BB129F422C48B39004C4329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3BB129F622C48B3B004C4329 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3BB129F922C48B3B004C4329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3BB129FB22C48B3B004C4329 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BB12A0522C48C89004C4329 /* track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track.png; sourceTree = "<group>"; };
+		3BB12A0722C48C91004C4329 /* cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cart.png; sourceTree = "<group>"; };
+		3BB12A0B22C492E0004C4329 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
+		3BB12A0D22C49335004C4329 /* ExhibitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitingViewController.swift; sourceTree = "<group>"; };
+		3BB12A0F22C5C79B004C4329 /* FirstRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRegistrationViewController.swift; sourceTree = "<group>"; };
+		DE5D772934FC7AB1E318CDD9 /* Pods-Mona_marche.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mona_marche.debug.xcconfig"; path = "Target Support Files/Pods-Mona_marche/Pods-Mona_marche.debug.xcconfig"; sourceTree = "<group>"; };
+		DFEC734D33C5F4F682F80668 /* Pods-Mona_marche.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mona_marche.release.xcconfig"; path = "Target Support Files/Pods-Mona_marche/Pods-Mona_marche.release.xcconfig"; sourceTree = "<group>"; };
+		E987DA1BAE9CA6E90E43C1DA /* Pods_Mona_marche.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mona_marche.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3BB129E922C48B39004C4329 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B647EFE13542505752036EAC /* Pods_Mona_marche.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3BB129E322C48B39004C4329 = {
+			isa = PBXGroup;
+			children = (
+				3BB129EE22C48B39004C4329 /* Mona_marche */,
+				3BB129ED22C48B39004C4329 /* Products */,
+				85C33BC3B0790282D7AD955D /* Pods */,
+				E74B158A5BECB5DA2AC75C9A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3BB129ED22C48B39004C4329 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BB129EC22C48B39004C4329 /* Mona_marche.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3BB129EE22C48B39004C4329 /* Mona_marche */ = {
+			isa = PBXGroup;
+			children = (
+				3B0399F322C64F5F005AC410 /* GoogleService-Info.plist */,
+				3BB129EF22C48B39004C4329 /* AppDelegate.swift */,
+				3BB12A0F22C5C79B004C4329 /* FirstRegistrationViewController.swift */,
+				3BB12A0B22C492E0004C4329 /* ShoppingViewController.swift */,
+				3BB12A0D22C49335004C4329 /* ExhibitingViewController.swift */,
+				3BB129F322C48B39004C4329 /* Main.storyboard */,
+				3BB129F622C48B3B004C4329 /* Assets.xcassets */,
+				3BB129F822C48B3B004C4329 /* LaunchScreen.storyboard */,
+				3BB129FB22C48B3B004C4329 /* Info.plist */,
+				3BB12A0722C48C91004C4329 /* cart.png */,
+				3BB12A0522C48C89004C4329 /* track.png */,
+			);
+			path = Mona_marche;
+			sourceTree = "<group>";
+		};
+		85C33BC3B0790282D7AD955D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DE5D772934FC7AB1E318CDD9 /* Pods-Mona_marche.debug.xcconfig */,
+				DFEC734D33C5F4F682F80668 /* Pods-Mona_marche.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E74B158A5BECB5DA2AC75C9A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E987DA1BAE9CA6E90E43C1DA /* Pods_Mona_marche.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3BB129EB22C48B39004C4329 /* Mona_marche */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BB129FE22C48B3B004C4329 /* Build configuration list for PBXNativeTarget "Mona_marche" */;
+			buildPhases = (
+				E3AB8C754A96532640188D89 /* [CP] Check Pods Manifest.lock */,
+				3BB129E822C48B39004C4329 /* Sources */,
+				3BB129E922C48B39004C4329 /* Frameworks */,
+				3BB129EA22C48B39004C4329 /* Resources */,
+				C4DEE5A03F877CA208F0AFD7 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mona_marche;
+			productName = Mona_marche;
+			productReference = 3BB129EC22C48B39004C4329 /* Mona_marche.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3BB129E422C48B39004C4329 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Ryu Ishibashi";
+				TargetAttributes = {
+					3BB129EB22C48B39004C4329 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 3BB129E722C48B39004C4329 /* Build configuration list for PBXProject "Mona_marche" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3BB129E322C48B39004C4329;
+			productRefGroup = 3BB129ED22C48B39004C4329 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3BB129EB22C48B39004C4329 /* Mona_marche */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3BB129EA22C48B39004C4329 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BB129FA22C48B3B004C4329 /* LaunchScreen.storyboard in Resources */,
+				3BB12A0822C48C91004C4329 /* cart.png in Resources */,
+				3BB12A0622C48C89004C4329 /* track.png in Resources */,
+				3BB129F722C48B3B004C4329 /* Assets.xcassets in Resources */,
+				3BB129F522C48B39004C4329 /* Main.storyboard in Resources */,
+				3B0399F422C64F5F005AC410 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4DEE5A03F877CA208F0AFD7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mona_marche/Pods-Mona_marche-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mona_marche/Pods-Mona_marche-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mona_marche/Pods-Mona_marche-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3AB8C754A96532640188D89 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mona_marche-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3BB129E822C48B39004C4329 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BB12A0C22C492E0004C4329 /* ShoppingViewController.swift in Sources */,
+				3BB129F022C48B39004C4329 /* AppDelegate.swift in Sources */,
+				3BB12A1022C5C79B004C4329 /* FirstRegistrationViewController.swift in Sources */,
+				3BB12A0E22C49335004C4329 /* ExhibitingViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3BB129F322C48B39004C4329 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BB129F422C48B39004C4329 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3BB129F822C48B3B004C4329 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BB129F922C48B3B004C4329 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3BB129FC22C48B3B004C4329 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3BB129FD22C48B3B004C4329 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3BB129FF22C48B3B004C4329 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE5D772934FC7AB1E318CDD9 /* Pods-Mona_marche.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 47E4SMXRVF;
+				INFOPLIST_FILE = Mona_marche/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "raiu.tech.Mona-marche";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3BB12A0022C48B3B004C4329 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFEC734D33C5F4F682F80668 /* Pods-Mona_marche.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 47E4SMXRVF;
+				INFOPLIST_FILE = Mona_marche/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "raiu.tech.Mona-marche";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3BB129E722C48B39004C4329 /* Build configuration list for PBXProject "Mona_marche" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BB129FC22C48B3B004C4329 /* Debug */,
+				3BB129FD22C48B3B004C4329 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BB129FE22C48B3B004C4329 /* Build configuration list for PBXNativeTarget "Mona_marche" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BB129FF22C48B3B004C4329 /* Debug */,
+				3BB12A0022C48B3B004C4329 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3BB129E422C48B39004C4329 /* Project object */;
+}
