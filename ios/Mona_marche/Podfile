@@ -3,4 +3,5 @@ use_frameworks!
 
 target 'Mona_marche' do
   pod 'Firebase/Core'
+  pod 'CropViewController'
 end

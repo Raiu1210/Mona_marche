@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var registrated_address_file_path:String = ""
+    var registrated_address = ""
     private var myTabBarController: UITabBarController!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -26,18 +27,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.registrated_address_file_path = directory_path + "/" + file_Name
         print(self.registrated_address_file_path)
         
-        var registrated_address = ""
         do {
             let file_url = NSURL(fileURLWithPath: self.registrated_address_file_path)
-            registrated_address = try String(contentsOf: file_url as URL, encoding: String.Encoding.utf8)
-            print("address : \(registrated_address)")
+            self.registrated_address = try String(contentsOf: file_url as URL, encoding: String.Encoding.utf8)
+            print("address : \(self.registrated_address)")
         } catch {
-            registrated_address = ""
+            self.registrated_address = ""
             print("File in not found")
         }
         
         
-        if registrated_address == "" {
+        if self.registrated_address == "" {
             print("This is first launch")
             self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.rootViewController = FirstRegistrationViewController()
