@@ -8,6 +8,7 @@
 
 import UIKit
 import CropViewController
+import SwiftyJSON
 
 class ExhibitingViewController: UIViewController, UITabBarDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -15,7 +16,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
     let title_field   = UITextField()
     let address_field = UITextField()
     let memo_field    = UITextView()
-    let amount_field  = UITextField()
+    let amount_mona_field  = UITextField()
     var image: UIImage?
     var imageView: UIImageView?
     var activityIndicatorView = UIActivityIndicatorView()
@@ -25,7 +26,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         self.view.backgroundColor = UIColor.white
         self.tabBarItem = UITabBarItem(title: "売りたい", image: track_img, tag: 2)
         self.title_field.text = ""
-        self.amount_field.text = ""
+        self.amount_mona_field.text = ""
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -140,13 +141,13 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         mona_label.text = "Mona"
         self.view.addSubview(mona_label)
         
-        amount_field.frame = CGRect(x: 130, y: 420, width: 150, height: 38)
-        amount_field.keyboardType = .decimalPad
-        amount_field.borderStyle = .roundedRect
-        amount_field.returnKeyType = .done
-        amount_field.clearButtonMode = .always
-        amount_field.delegate = self
-        self.view.addSubview(amount_field)
+        amount_mona_field.frame = CGRect(x: 130, y: 420, width: 150, height: 38)
+        amount_mona_field.keyboardType = .decimalPad
+        amount_mona_field.borderStyle = .roundedRect
+        amount_mona_field.returnKeyType = .done
+        amount_mona_field.clearButtonMode = .always
+        amount_mona_field.delegate = self
+        self.view.addSubview(amount_mona_field)
     }
     
     internal func create_send_button() {
@@ -170,7 +171,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         if self.address_field.text!.count != 34 { status = false }
         if first_character != "P" && first_character != "M" {status = false}
         if self.memo_field.text == "" {status = false}
-        if self.amount_field.text == "" {status = false}
+        if self.amount_mona_field.text == "" {status = false}
         
         
         if status {
@@ -190,11 +191,10 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
             "title"  : self.title_field.text!,
             "pay_address" : self.address_field.text!,
             "memo"    : self.memo_field.text!,
-            "amount"  : self.amount_field.text!
+            "amount_mona"  : self.amount_mona_field.text!
         ]
         
-//        let url = URL(string: "http://zihankimap.work/mona/uplaod_new_goods.php")
-        let url = URL(string: "http://zihankimap.work/mona/upload")
+        let url = URL(string: "http://zihankimap.work/mona/uplaod_new_goods.php")
         let boundary = self.generateBoundaryString()
         let image_data = (self.image?.jpegData(compressionQuality: 0.5))!
         let request = NSMutableURLRequest(url: url!)
@@ -216,13 +216,30 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
                 let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                 print("****** response data = \(responseString!)")
                 
+                do {
+                    let json_Data: Data =  responseString!.data(using: String.Encoding.utf8.rawValue)!
+                    let parsed_data = try JSON(data: json_Data)
+                    if parsed_data["Status"] == "OK" {
+                        let sent_successfully_alert: UIAlertController = UIAlertController(title: "Good job!", message: "ちゃんとサーバに登録されたっぽいでー",  preferredStyle: .alert)
+                        let OkAction = UIAlertAction(title: "よかった〜", style: .default) { action in }
+                        sent_successfully_alert.addAction(OkAction)
+                        self.present(sent_successfully_alert, animated: true, completion: nil)
+                    } else {
+                        let sent_missed_alert: UIAlertController = UIAlertController(title: "OMG", message: "なんかミスってるっぽいw",  preferredStyle: .alert)
+                        let OkAction = UIAlertAction(title: "まじか〜", style: .default) { action in }
+                        sent_missed_alert.addAction(OkAction)
+                        self.present(sent_missed_alert, animated: true, completion: nil)
+                    }
+                } catch { print(error) }
+                
+                
                 DispatchQueue.main.async {
                     self.activityIndicatorView.stopAnimating()
                     self.imageView?.image = nil
                     self.title_field.text = ""
                     self.address_field.text = ""
                     self.memo_field.text = ""
-                    self.amount_field.text = ""
+                    self.amount_mona_field.text = ""
                 }
             }
             task.resume()

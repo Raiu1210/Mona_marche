@@ -53,12 +53,11 @@ class FirstRegistrationViewController : UIViewController {
     
     @objc func registration(_ sender: UIButton) {
         var status = true
-        var input_address = registration_address_field.text
+        let input_address = registration_address_field.text
         if input_address?.count != 34 { status = false }
         let first_character = registration_address_field.text!.prefix(1)
         if first_character != "P" && first_character != "M" { status = false }
         
-        input_address = String(input_address!)
         if status {
             do {
                 print(appDelegate.registrated_address_file_path)
@@ -71,6 +70,7 @@ class FirstRegistrationViewController : UIViewController {
                     print("done session")
                 }
                 task.resume()
+                self.appDelegate.registrated_address = input_address!
                 let registerd_address_alert: UIAlertController = UIAlertController(title: "準備OK！", message: "オッケー！モナコインで買い物したり、売ったりして楽しもう！",  preferredStyle: .alert)
                 let done_Action = UIAlertAction(title: "あいあいさ〜", style: .default) { action in
                     self.appDelegate.finish_register()
@@ -89,7 +89,7 @@ class FirstRegistrationViewController : UIViewController {
     }
     
     func go_shopping() {
-        let shopping_vc = ShoppingViewController()
+        let shopping_vc = GoodsListViewController()
         self.present(shopping_vc, animated: true, completion: nil)
         print("why I'm here")
     }

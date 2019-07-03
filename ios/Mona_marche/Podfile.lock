@@ -50,10 +50,12 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - CropViewController
   - Firebase/Core
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -65,6 +67,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - nanopb
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   CropViewController: 6c962d6fb264cc5cb325b622d5029d50c6c43e72
@@ -75,7 +78,8 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: a35a645835bae31b6bdc0576396bc23908f12a22
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 785eeeaf7a87dab5c3b6673532403bd5fad61c2d
+PODFILE CHECKSUM: 4d8a685ac9c7ef804bbadba0942ac3521e76b04a
 
 COCOAPODS: 1.7.1

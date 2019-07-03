@@ -3,5 +3,6 @@ use_frameworks!
 
 target 'Mona_marche' do
   pod 'Firebase/Core'
+  pod 'SwiftyJSON', '~> 4.0'
   pod 'CropViewController'
 end

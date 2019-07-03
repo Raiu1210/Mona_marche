@@ -14,7 +14,7 @@
 		3BB129FA22C48B3B004C4329 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB129F822C48B3B004C4329 /* LaunchScreen.storyboard */; };
 		3BB12A0622C48C89004C4329 /* track.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB12A0522C48C89004C4329 /* track.png */; };
 		3BB12A0822C48C91004C4329 /* cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB12A0722C48C91004C4329 /* cart.png */; };
-		3BB12A0C22C492E0004C4329 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB12A0B22C492E0004C4329 /* ShoppingViewController.swift */; };
+		3BB12A0C22C492E0004C4329 /* GoodsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB12A0B22C492E0004C4329 /* GoodsListViewController.swift */; };
 		3BB12A0E22C49335004C4329 /* ExhibitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB12A0D22C49335004C4329 /* ExhibitingViewController.swift */; };
 		3BB12A1022C5C79B004C4329 /* FirstRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB12A0F22C5C79B004C4329 /* FirstRegistrationViewController.swift */; };
 		B647EFE13542505752036EAC /* Pods_Mona_marche.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E987DA1BAE9CA6E90E43C1DA /* Pods_Mona_marche.framework */; };
@@ -30,7 +30,7 @@
 		3BB129FB22C48B3B004C4329 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BB12A0522C48C89004C4329 /* track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track.png; sourceTree = "<group>"; };
 		3BB12A0722C48C91004C4329 /* cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cart.png; sourceTree = "<group>"; };
-		3BB12A0B22C492E0004C4329 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
+		3BB12A0B22C492E0004C4329 /* GoodsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsListViewController.swift; sourceTree = "<group>"; };
 		3BB12A0D22C49335004C4329 /* ExhibitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitingViewController.swift; sourceTree = "<group>"; };
 		3BB12A0F22C5C79B004C4329 /* FirstRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRegistrationViewController.swift; sourceTree = "<group>"; };
 		DE5D772934FC7AB1E318CDD9 /* Pods-Mona_marche.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mona_marche.debug.xcconfig"; path = "Target Support Files/Pods-Mona_marche/Pods-Mona_marche.debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 				3B0399F322C64F5F005AC410 /* GoogleService-Info.plist */,
 				3BB129EF22C48B39004C4329 /* AppDelegate.swift */,
 				3BB12A0F22C5C79B004C4329 /* FirstRegistrationViewController.swift */,
-				3BB12A0B22C492E0004C4329 /* ShoppingViewController.swift */,
+				3BB12A0B22C492E0004C4329 /* GoodsListViewController.swift */,
 				3BB12A0D22C49335004C4329 /* ExhibitingViewController.swift */,
 				3BB129F322C48B39004C4329 /* Main.storyboard */,
 				3BB129F622C48B3B004C4329 /* Assets.xcassets */,
@@ -221,7 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BB12A0C22C492E0004C4329 /* ShoppingViewController.swift in Sources */,
+				3BB12A0C22C492E0004C4329 /* GoodsListViewController.swift in Sources */,
 				3BB129F022C48B39004C4329 /* AppDelegate.swift in Sources */,
 				3BB12A1022C5C79B004C4329 /* FirstRegistrationViewController.swift in Sources */,
 				3BB12A0E22C49335004C4329 /* ExhibitingViewController.swift in Sources */,
