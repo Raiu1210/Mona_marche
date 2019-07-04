@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var registrated_address_file_path:String = ""
     var registrated_address = ""
+    var goods_json_string = ""
+    var selected_id:Int?
     var myNavigationController: UINavigationController?
     private var myTabBarController: UITabBarController!
 
