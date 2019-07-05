@@ -52,6 +52,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         create_memo_field()
         create_amount_field()
         create_send_button()
+        create_open_button()
     }
     
     internal func create_choose_photo_button() {
@@ -271,6 +272,27 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         body.appendString(string: "--\(boundary)--\r\n")
         
         return body
+    }
+    
+    internal func create_open_button() {
+        let open_button = UIButton()
+        open_button.titleLabel?.numberOfLines = 0
+        open_button.setTitle("Monawallet\nを開く", for: .normal)
+        open_button.backgroundColor = UIColor.orange
+        open_button.sizeToFit()
+        open_button.frame = CGRect(x: 230, y: 50, width: 120, height: 80)
+        open_button.addTarget(self, action: #selector(open_monawallet(_:)), for: .touchUpInside)
+        
+        self.view.addSubview(open_button)
+    }
+    
+    @objc func open_monawallet(_ sender:UIButton) {
+        let url = URL(string: "monawallet://")!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
     
     internal func create_activity_indicator() {

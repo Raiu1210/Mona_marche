@@ -66,10 +66,11 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
                 print(num_of_Q)
                 for i in 0 ..< parsed_data.count
                 {
-                    let id = parsed_data[i]["id"].stringValue
-                    let title = parsed_data[i]["title"].stringValue
-                    let image_path = parsed_data[i]["image_path"].stringValue
-                    let price = parsed_data[i]["amount_mona"].stringValue
+                    print((parsed_data.count-1)-i)
+                    let id = parsed_data[(parsed_data.count-1)-i]["id"].stringValue
+                    let title = parsed_data[(parsed_data.count-1)-i]["title"].stringValue
+                    let image_path = parsed_data[(parsed_data.count-1)-i]["image_path"].stringValue
+                    let price = parsed_data[(parsed_data.count-1)-i]["amount_mona"].stringValue
                     self.create_button(index:i, id: Int(id)!, title:title, price:price, image_path:image_path)
                 }
             } catch { print(error) }
@@ -88,8 +89,9 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
     }
     
     internal func create_button(index:Int, id:Int, title:String, price:String, image_path:String) {
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "商品一覧", style: .plain, target: nil, action: nil)
         let G_Button = UIButton()
+        print(image_path)
         let imageView = AsyncImageView(frame: CGRect(x: 0, y: 100*index, width: 100, height: 100))
         imageView.load_image(urlString: image_path)
         imageView.image = self.image
@@ -103,7 +105,6 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
         G_Button.setTitleColor(UIColor.black, for: .normal)
         G_Button.tag = id
         G_Button.addTarget(self, action: #selector(GoodsListViewController.goGoodsDetail(_:)), for: .touchUpInside)
-//        G_Button.setImage(goods_image, for: .normal)
         self.scrollView.addSubview(imageView)
         self.scrollView.addSubview(G_Button)
     }
