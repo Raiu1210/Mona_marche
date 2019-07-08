@@ -52,10 +52,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let goods_list_view_controller: UIViewController = GoodsListViewController()
         let goods_list_navigation_controller = UINavigationController(rootViewController: goods_list_view_controller)
+        let my_goods_list_view_controller = MyGoodsListViewController()
+        let my_goods_list_navigation_controller = UINavigationController(rootViewController: my_goods_list_view_controller)
         let n_bar_rgba = UIColor(red: 240/255, green: 240/255, blue: 10/255, alpha: 1)
         UINavigationBar.appearance().barTintColor = n_bar_rgba
         let exhibiting_view_controller: UIViewController = ExhibitingViewController()
-        let myTabs = NSArray(objects: goods_list_navigation_controller, exhibiting_view_controller)
+        let myTabs = NSArray(objects: goods_list_navigation_controller, my_goods_list_navigation_controller, exhibiting_view_controller)
         myTabBarController = UITabBarController()
         myTabBarController?.setViewControllers(myTabs as? [UIViewController], animated: false)
         self.window!.rootViewController = myTabBarController
@@ -65,11 +67,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func finish_register() {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        let shopping_tab: UIViewController = GoodsListViewController()
-        let exhibiting_tab: UIViewController = ExhibitingViewController()
-        
-        let myTabs = NSArray(objects: shopping_tab, exhibiting_tab)
+        let goods_list_view_controller: UIViewController = GoodsListViewController()
+        let goods_list_navigation_controller = UINavigationController(rootViewController: goods_list_view_controller)
+        let my_goods_list_view_controller = MyGoodsListViewController()
+        let my_goods_list_navigation_controller = UINavigationController(rootViewController: my_goods_list_view_controller)
+        let n_bar_rgba = UIColor(red: 240/255, green: 240/255, blue: 10/255, alpha: 1)
+        UINavigationBar.appearance().barTintColor = n_bar_rgba
+        let exhibiting_view_controller: UIViewController = ExhibitingViewController()
+        let myTabs = NSArray(objects: goods_list_navigation_controller, exhibiting_view_controller, my_goods_list_navigation_controller)
         myTabBarController = UITabBarController()
         myTabBarController?.setViewControllers(myTabs as? [UIViewController], animated: false)
         self.window!.rootViewController = myTabBarController

@@ -1,28 +1,29 @@
 //
-//  ShoppingViewController.swift
+//  MyGoodsViewController.swift
 //  Mona_marche
 //
-//  Created by raiu on 2019/06/27.
+//  Created by raiu on 2019/07/06.
 //  Copyright © 2019 Ryu Ishibashi. All rights reserved.
 //
 
 import UIKit
 import SwiftyJSON
 
-class GoodsListViewController: UIViewController, UITabBarDelegate {
-    let cart_img = UIImage(named: "./cart.png")
-    let data_server = "http://zihankimap.work/mona//goods_list"
+class MyGoodsListViewController: UIViewController, UITabBarDelegate {
+    let my_list_img = UIImage(named: "./my_list.png")
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let scrollView = UIScrollView()
+    var data_server = ""
+    var navigation_bar_height:CGFloat = 0.0
     var viewWidth:CGFloat = 0.0
     var viewHeight:CGFloat = 0.0
     var image: UIImage?
     var refreshControl:UIRefreshControl!
-    var navigation_bar_height:CGFloat = 0.0
     
     init () {
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = UITabBarItem(title: "買いたい", image: cart_img, tag: 1)
+        self.tabBarItem = UITabBarItem(title: "出品リスト", image: my_list_img, tag: 1)
+        self.data_server = "http:/zihankimap.work/mona/my_goods_list?registered_address=\(self.appDelegate.registrated_address)"
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -39,9 +40,9 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
         viewWidth = self.view.frame.width
         viewHeight = self.view.frame.height
         navigation_bar_height = self.navigationController?.navigationBar.frame.size.height ?? 80
-        self.view.backgroundColor = UIColor.white
         
-        self.title = "商品リスト"
+        self.view.backgroundColor = UIColor.white
+        self.title = "あなたの出品リスト"
         self.get_data_from_server(url: self.data_server)
     }
     
@@ -55,7 +56,7 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
             let jsonString = String(data: data, encoding: String.Encoding.utf8) ?? ""
             self.load_jsonString_and_createView(jsonString: jsonString)
             }
-        }.resume()
+            }.resume()
     }
     
     internal func load_jsonString_and_createView(jsonString:String) {
@@ -72,10 +73,9 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
                     print((parsed_data.count-1)-i)
                     let id = parsed_data[(parsed_data.count-1)-i]["id"].stringValue
                     let title = parsed_data[(parsed_data.count-1)-i]["title"].stringValue
-                    let contact = parsed_data[(parsed_data.count-1)-i]["contact"].stringValue
                     let image_path = parsed_data[(parsed_data.count-1)-i]["image_path"].stringValue
                     let price = parsed_data[(parsed_data.count-1)-i]["amount_mona"].stringValue
-                    self.create_button(index:i, id: Int(id)!, title:title, contact:contact, price:price, image_path:image_path)
+                    self.create_button(index:i, id: Int(id)!, title:title, price:price, image_path:image_path)
                 }
             } catch { print(error) }
         }
@@ -92,15 +92,14 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
         self.view.addSubview(scrollView)
     }
     
-    internal func create_button(index:Int, id:Int, title:String, contact:String, price:String, image_path:String) {
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "商品一覧", style: .plain, target: nil, action: nil)
+    internal func create_button(index:Int, id:Int, title:String, price:String, image_path:String) {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "あなたの出品一覧", style: .plain, target: nil, action: nil)
         let G_Button = UIButton()
         print(image_path)
         let imageView = AsyncImageView(frame: CGRect(x: 0, y: 100*index, width: 100, height: 100))
         imageView.load_image(urlString: image_path)
-        
         imageView.image = self.image
-        let title_message = title + "\n" + price + "Mona\n" + contact
+        let title_message = title + "\n" + price + "Mona"
         
         G_Button.frame = CGRect(x:100, y:100*index, width:Int(viewWidth-100), height:100)
         G_Button.titleLabel?.numberOfLines = 0
@@ -118,8 +117,8 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
     
     @objc func goGoodsDetail(_ sender: UIButton) {
         self.appDelegate.selected_id = sender.tag
-        let goods_detail_VC = GoodsDetailViewController()
-        self.navigationController?.pushViewController(goods_detail_VC, animated: true)
+        let my_goods_detail_VC = MyGoodsDetailViewController()
+        self.navigationController?.pushViewController(my_goods_detail_VC, animated: true)
     }
     
     @objc func reload(sender: UIRefreshControl) {
@@ -140,35 +139,3 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
     }
     
 }
-
-
-class AsyncImageView: UIImageView {
-    let CACHE_SEC : TimeInterval = 5 * 60
-    
-    func load_image(urlString: String) {
-        let url = URL(string: urlString)!
-        let task = URLSession.shared.dataTask(with: url) { data, response, erroe in
-            if let error = erroe {
-                print("クライアントエラー: \(error.localizedDescription) \n")
-                return
-            }
-            
-            guard let data = data, let response = response as? HTTPURLResponse else {
-                print("no data or no response")
-                return
-            }
-            
-            if response.statusCode == 200 {
-                DispatchQueue.main.async {
-                    print(data)
-                    let image = UIImage(data: data)
-                    self.image = image
-                }
-            } else {
-                print("サーバエラー ステータスコード: \(response.statusCode)\n")
-            }
-        }
-        task.resume()
-    }
-}
-

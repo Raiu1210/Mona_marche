@@ -17,6 +17,7 @@
 	$registered_address = $_POST["registered_address"];
 	$title = $_POST["title"];
 	$pay_address = $_POST["pay_address"];
+	$contact = $_POST["contact"];
 	$memo = $_POST["memo"];
 	$amount_mona = $_POST["amount_mona"];
 	$global_image_path = "http://zihankimap.work/mona/img/".$file_name;
@@ -29,6 +30,7 @@
 			"registered_address" => $registered_address,
 			"title" => $title,
 			"pay_address" => $pay_address,
+			"contact" => $contact,
 			"memo" => $memo,
 			"amount_mona" => $amount_mona
 		]);
@@ -49,6 +51,7 @@
                 registered_address,
                 title,
                 pay_address,
+                contact,
                 memo,
                 amount_mona,
                 image_path,
@@ -57,6 +60,7 @@
                 '$registered_address',
                 '$title',
                 '$pay_address',
+                '$contact',
                 '$memo',
                 '$amount_mona',
                 '$global_image_path',

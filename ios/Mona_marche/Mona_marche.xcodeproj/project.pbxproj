@@ -10,6 +10,10 @@
 		3B0399F422C64F5F005AC410 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B0399F322C64F5F005AC410 /* GoogleService-Info.plist */; };
 		3B19497F22CDB9BB00E9175B /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19497E22CDB9BB00E9175B /* no_image.png */; };
 		3B19498122CDC8BE00E9175B /* GoodsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19498022CDC8BE00E9175B /* GoodsDetailViewController.swift */; };
+		3B19498322D0729500E9175B /* MyGoodsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19498222D0729500E9175B /* MyGoodsListViewController.swift */; };
+		3B19498522D073F400E9175B /* my_list.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19498422D073F400E9175B /* my_list.png */; };
+		3B19498722D0F99A00E9175B /* MyGoodsDetailViewContoroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19498622D0F99A00E9175B /* MyGoodsDetailViewContoroller.swift */; };
+		3B19499122D3274500E9175B /* photo_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19499022D3274500E9175B /* photo_img.png */; };
 		3BB129F022C48B39004C4329 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB129EF22C48B39004C4329 /* AppDelegate.swift */; };
 		3BB129F522C48B39004C4329 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB129F322C48B39004C4329 /* Main.storyboard */; };
 		3BB129F722C48B3B004C4329 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB129F622C48B3B004C4329 /* Assets.xcassets */; };
@@ -26,6 +30,10 @@
 		3B0399F322C64F5F005AC410 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B19497E22CDB9BB00E9175B /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
 		3B19498022CDC8BE00E9175B /* GoodsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsDetailViewController.swift; sourceTree = "<group>"; };
+		3B19498222D0729500E9175B /* MyGoodsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGoodsListViewController.swift; sourceTree = "<group>"; };
+		3B19498422D073F400E9175B /* my_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_list.png; sourceTree = "<group>"; };
+		3B19498622D0F99A00E9175B /* MyGoodsDetailViewContoroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGoodsDetailViewContoroller.swift; sourceTree = "<group>"; };
+		3B19499022D3274500E9175B /* photo_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = photo_img.png; path = ../../../../../../Downloads/photo_img.png; sourceTree = "<group>"; };
 		3BB129EC22C48B39004C4329 /* Mona_marche.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mona_marche.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BB129EF22C48B39004C4329 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BB129F422C48B39004C4329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +89,8 @@
 				3BB12A0B22C492E0004C4329 /* GoodsListViewController.swift */,
 				3B19498022CDC8BE00E9175B /* GoodsDetailViewController.swift */,
 				3BB12A0D22C49335004C4329 /* ExhibitingViewController.swift */,
+				3B19498222D0729500E9175B /* MyGoodsListViewController.swift */,
+				3B19498622D0F99A00E9175B /* MyGoodsDetailViewContoroller.swift */,
 				3BB129F322C48B39004C4329 /* Main.storyboard */,
 				3BB129F622C48B3B004C4329 /* Assets.xcassets */,
 				3BB129F822C48B3B004C4329 /* LaunchScreen.storyboard */,
@@ -88,6 +98,8 @@
 				3B19497E22CDB9BB00E9175B /* no_image.png */,
 				3BB12A0722C48C91004C4329 /* cart.png */,
 				3BB12A0522C48C89004C4329 /* track.png */,
+				3B19498422D073F400E9175B /* my_list.png */,
+				3B19499022D3274500E9175B /* photo_img.png */,
 			);
 			path = Mona_marche;
 			sourceTree = "<group>";
@@ -169,7 +181,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B19499122D3274500E9175B /* photo_img.png in Resources */,
 				3BB129FA22C48B3B004C4329 /* LaunchScreen.storyboard in Resources */,
+				3B19498522D073F400E9175B /* my_list.png in Resources */,
 				3B19497F22CDB9BB00E9175B /* no_image.png in Resources */,
 				3BB12A0822C48C91004C4329 /* cart.png in Resources */,
 				3BB12A0622C48C89004C4329 /* track.png in Resources */,
@@ -229,10 +243,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BB12A0C22C492E0004C4329 /* GoodsListViewController.swift in Sources */,
+				3B19498722D0F99A00E9175B /* MyGoodsDetailViewContoroller.swift in Sources */,
 				3BB129F022C48B39004C4329 /* AppDelegate.swift in Sources */,
 				3BB12A1022C5C79B004C4329 /* FirstRegistrationViewController.swift in Sources */,
 				3B19498122CDC8BE00E9175B /* GoodsDetailViewController.swift in Sources */,
 				3BB12A0E22C49335004C4329 /* ExhibitingViewController.swift in Sources */,
+				3B19498322D0729500E9175B /* MyGoodsListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

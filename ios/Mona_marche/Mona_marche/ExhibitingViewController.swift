@@ -13,13 +13,19 @@ import SwiftyJSON
 class ExhibitingViewController: UIViewController, UITabBarDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let track_img = UIImage(named: "./track.png")
+    let photo_img = UIImage(named: "./photo_img.png")
     let title_field   = UITextField()
     let address_field = UITextField()
+    let contact_field = UITextField()
     let memo_field    = UITextView()
+    let scrollView = UIScrollView()
     let amount_mona_field  = UITextField()
     var image: UIImage?
     var imageView: UIImageView?
     var activityIndicatorView = UIActivityIndicatorView()
+    var navigation_bar_height:CGFloat = 0.0
+    var viewWidth:CGFloat = 0.0
+    var viewHeight:CGFloat = 0.0
     
     init () {
         super.init(nibName: nil, bundle: nil)
@@ -37,8 +43,9 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    // タッチしたらキーボードが閉じるで〜
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("キーボード外をタップ")
+        //キーボードを閉じる
         self.view.endEditing(true)
     }
     
@@ -46,24 +53,39 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        viewWidth = self.view.frame.width
+        viewHeight = self.view.frame.height
+        navigation_bar_height = self.navigationController?.navigationBar.frame.size.height ?? 80
+        
+        create_view(height:700)
         create_choose_photo_button()
+        create_activity_indicator()
         create_title_field()
         create_address_field()
+        create_contact_field()
         create_memo_field()
         create_amount_field()
         create_send_button()
         create_open_button()
     }
     
+    internal func create_view(height:Int) {
+        scrollView.frame = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
+        scrollView.contentSize = CGSize(width: Int(viewWidth), height: height)
+        scrollView.keyboardDismissMode = .onDrag
+        
+        self.view.addSubview(scrollView)
+    }
+    
     internal func create_choose_photo_button() {
         let choose_photo_button = UIButton()
-        choose_photo_button.setTitle("写真", for: .normal)
-        choose_photo_button.backgroundColor = UIColor.orange
         choose_photo_button.sizeToFit()
-        choose_photo_button.frame = CGRect(x: 10, y: 70, width: 70, height: 38)
+        choose_photo_button.layer.cornerRadius = 10.0
+        choose_photo_button.frame = CGRect(x: 30, y: 65, width: 40, height: 50)
+        choose_photo_button.setImage(self.photo_img, for: .normal)
         choose_photo_button.addTarget(self, action: #selector(choose_photo_from_camera_roll(_:)), for: .touchUpInside)
         
-        self.view.addSubview(choose_photo_button)
+        self.scrollView.addSubview(choose_photo_button)
     }
     
     @objc internal func choose_photo_from_camera_roll(_ sender:UIButton) {
@@ -79,8 +101,8 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         self.imageView?.image = nil
         self.imageView = UIImageView(image: image)
         self.imageView!.contentMode = UIView.ContentMode.scaleAspectFit
-        self.imageView!.frame = CGRect(x:100, y:50, width:100, height:100)
-        self.view.addSubview(self.imageView!)
+        self.imageView!.frame = CGRect(x:100, y:30, width:120, height:120)
+        self.scrollView.addSubview(self.imageView!)
     }
     
     
@@ -88,7 +110,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         let title_guide_label = UILabel()
         title_guide_label.frame = CGRect(x: 20, y: 170, width: 100, height: 38)
         title_guide_label.text = "商品名"
-        self.view.addSubview(title_guide_label)
+        self.scrollView.addSubview(title_guide_label)
         
         self.title_field.frame = CGRect(x: 130, y: 170, width: self.view.bounds.width-140, height: 38)
         self.title_field.keyboardType = .default
@@ -96,14 +118,14 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         self.title_field.returnKeyType = .done
         self.title_field.clearButtonMode = .always
         self.title_field.delegate = self
-        self.view.addSubview(title_field)
+        self.scrollView.addSubview(title_field)
     }
     
     internal func create_address_field() {
         let recv_address_guide_label = UILabel()
         recv_address_guide_label.frame = CGRect(x: 20, y: 220, width: 100, height: 38)
         recv_address_guide_label.text = "受取アドレス"
-        self.view.addSubview(recv_address_guide_label)
+        self.scrollView.addSubview(recv_address_guide_label)
         
         address_field.frame = CGRect(x: 130, y: 220, width: self.view.bounds.width-140, height: 38)
         address_field.keyboardType = .default
@@ -111,44 +133,59 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         address_field.returnKeyType = .done
         address_field.clearButtonMode = .always
         address_field.delegate = self
-        self.view.addSubview(address_field)
+        self.scrollView.addSubview(address_field)
+    }
+    
+    internal func create_contact_field() {
+        let contact_guide_label = UILabel()
+        contact_guide_label.frame = CGRect(x: 20, y: 270, width: 100, height: 38)
+        contact_guide_label.text = "連絡先"
+        self.scrollView.addSubview(contact_guide_label)
+        
+        contact_field.frame = CGRect(x: 130, y: 270, width: self.view.bounds.width-140, height: 38)
+        contact_field.keyboardType = .default
+        contact_field.borderStyle = .roundedRect
+        contact_field.returnKeyType = .done
+        contact_field.clearButtonMode = .always
+        contact_field.delegate = self
+        self.scrollView.addSubview(contact_field)
     }
     
     internal func create_memo_field() {
         let memo_guide_label = UILabel()
-        memo_guide_label.frame = CGRect(x: 20, y: 270, width: 100, height: 38)
+        memo_guide_label.frame = CGRect(x: 20, y: 320, width: 100, height: 38)
         memo_guide_label.text = "商品説明"
-        self.view.addSubview(memo_guide_label)
+        self.scrollView.addSubview(memo_guide_label)
         
-        self.memo_field.frame = CGRect(x: 130, y: 270, width: self.view.bounds.width-140, height: 138)
+        self.memo_field.frame = CGRect(x: 130, y: 320, width: self.view.bounds.width-140, height: 138)
         self.memo_field.layer.borderWidth = 0.3
         self.memo_field.layer.cornerRadius = 6.0
         self.memo_field.layer.borderColor = UIColor.lightGray.cgColor
         self.memo_field.layer.masksToBounds = true
         
         
-        self.view.addSubview(self.memo_field)
+        self.scrollView.addSubview(self.memo_field)
     }
     
     
     internal func create_amount_field() {
         let amount_guide_label = UILabel()
-        amount_guide_label.frame = CGRect(x: 20, y: 420, width: 70, height: 38)
+        amount_guide_label.frame = CGRect(x: 20, y: 470, width: 70, height: 38)
         amount_guide_label.text = "金額"
-        self.view.addSubview(amount_guide_label)
+        self.scrollView.addSubview(amount_guide_label)
         
         let mona_label = UILabel()
-        mona_label.frame = CGRect(x: 290, y: 420, width: 70, height: 38)
+        mona_label.frame = CGRect(x: 290, y: 470, width: 70, height: 38)
         mona_label.text = "Mona"
-        self.view.addSubview(mona_label)
+        self.scrollView.addSubview(mona_label)
         
-        amount_mona_field.frame = CGRect(x: 130, y: 420, width: 150, height: 38)
+        amount_mona_field.frame = CGRect(x: 130, y: 470, width: 150, height: 38)
         amount_mona_field.keyboardType = .decimalPad
         amount_mona_field.borderStyle = .roundedRect
         amount_mona_field.returnKeyType = .done
         amount_mona_field.clearButtonMode = .always
         amount_mona_field.delegate = self
-        self.view.addSubview(amount_mona_field)
+        self.scrollView.addSubview(amount_mona_field)
     }
     
     internal func create_send_button() {
@@ -156,10 +193,12 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         send_button.setTitle("出品する", for: .normal)
         send_button.backgroundColor = UIColor.orange
         send_button.sizeToFit()
-        send_button.frame = CGRect(x: self.view.bounds.width/2-50, y: 500, width: 100, height: 38)
+        send_button.layer.cornerRadius = 10.0
+        send_button.backgroundColor = UIColor(red: 250/255, green: 40/255, blue: 10/255, alpha: 0.9)
+        send_button.frame = CGRect(x: self.view.bounds.width/2-50, y: 550, width: 100, height: 38)
         send_button.addTarget(self, action: #selector(send_server(_:)), for: .touchUpInside)
         
-        self.view.addSubview(send_button)
+        self.scrollView.addSubview(send_button)
     }
     
     @objc func send_server(_: UIButton) {
@@ -171,6 +210,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         if self.title_field.text == "" {status = false}
         if self.address_field.text!.count != 34 { status = false }
         if first_character != "P" && first_character != "M" {status = false}
+        if self.contact_field.text == "" {status = false}
         if self.memo_field.text == "" {status = false}
         if self.amount_mona_field.text == "" {status = false}
         
@@ -191,9 +231,12 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
             "registered_address" : self.appDelegate.registrated_address,
             "title"  : self.title_field.text!,
             "pay_address" : self.address_field.text!,
+            "contact": self.contact_field.text!,
             "memo"    : self.memo_field.text!,
             "amount_mona"  : self.amount_mona_field.text!
         ]
+        
+        print("contact is \(self.contact_field.text!)")
         
         let url = URL(string: "http://zihankimap.work/mona/uplaod_new_goods.php")
         let boundary = self.generateBoundaryString()
@@ -239,6 +282,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
                     self.imageView?.image = nil
                     self.title_field.text = ""
                     self.address_field.text = ""
+                    self.contact_field.text = ""
                     self.memo_field.text = ""
                     self.amount_mona_field.text = ""
                 }
@@ -280,10 +324,11 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         open_button.setTitle("Monawallet\nを開く", for: .normal)
         open_button.backgroundColor = UIColor.orange
         open_button.sizeToFit()
-        open_button.frame = CGRect(x: 230, y: 50, width: 120, height: 80)
+        open_button.layer.cornerRadius = 10.0
+        open_button.frame = CGRect(x: 230, y: 60, width: 110, height: 80)
         open_button.addTarget(self, action: #selector(open_monawallet(_:)), for: .touchUpInside)
         
-        self.view.addSubview(open_button)
+        self.scrollView.addSubview(open_button)
     }
     
     @objc func open_monawallet(_ sender:UIButton) {
@@ -296,12 +341,10 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
     }
     
     internal func create_activity_indicator() {
-        let width = self.view.bounds.width
-        let height = self.view.bounds.height
-        activityIndicatorView.frame = CGRect(x: 300, y: 300, width: 60, height: 60)
+        activityIndicatorView.frame = CGRect(x: 80, y: 500, width: 60, height: 60)
         activityIndicatorView.style = .whiteLarge
         activityIndicatorView.color = .lightGray
-        self.view.addSubview(activityIndicatorView)
+        self.scrollView.addSubview(activityIndicatorView)
     }
 }
 
@@ -350,4 +393,12 @@ extension NSMutableData {
         let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
         append(data!)
     }
+}
+
+extension UIScrollView {
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.next?.touchesBegan(touches, with: event)
+    }
+    
+    
 }

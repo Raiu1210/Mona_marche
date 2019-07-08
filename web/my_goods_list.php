@@ -13,14 +13,18 @@
 
     try
     {
-        $sql = "SELECT * FROM mona_marche_data";
+        $registered_address = $_GET['registered_address'];
+        $sql = "SELECT * FROM mona_marche_data 
+                WHERE registered_address = '$registered_address'";
+
     	$res = $mysqli->query($sql);
+
     	$data = [];
 
         foreach ($res as $value) 
         {
             $temp = array();
-            if($value[alive] == 1)
+            if($value[alive] == 1 && $value[registered_address] == $registered_address)
             {
                 $temp = ['id'=>$value[id],
                 		 'timestamp'=>$value[timestamp],
