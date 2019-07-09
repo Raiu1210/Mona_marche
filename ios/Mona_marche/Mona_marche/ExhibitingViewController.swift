@@ -14,25 +14,29 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let track_img = UIImage(named: "./track.png")
     let photo_img = UIImage(named: "./photo_img.png")
+    let list: [String] = ["JPY", "MONA"]
     let title_field   = UITextField()
     let address_field = UITextField()
     let contact_field = UITextField()
     let memo_field    = UITextView()
     let scrollView = UIScrollView()
-    let amount_mona_field  = UITextField()
+    let price_field  = UITextField()
+    var selected_currency = ""
     var image: UIImage?
     var imageView: UIImageView?
+    var picker_view: UIPickerView = UIPickerView()
     var activityIndicatorView = UIActivityIndicatorView()
     var navigation_bar_height:CGFloat = 0.0
     var viewWidth:CGFloat = 0.0
     var viewHeight:CGFloat = 0.0
+    
     
     init () {
         super.init(nibName: nil, bundle: nil)
         self.view.backgroundColor = UIColor.white
         self.tabBarItem = UITabBarItem(title: "売りたい", image: track_img, tag: 2)
         self.title_field.text = ""
-        self.amount_mona_field.text = ""
+        self.price_field.text = ""
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,8 +48,6 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("キーボード外をタップ")
-        //キーボードを閉じる
         self.view.endEditing(true)
     }
     
@@ -57,7 +59,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         viewHeight = self.view.frame.height
         navigation_bar_height = self.navigationController?.navigationBar.frame.size.height ?? 80
         
-        create_view(height:700)
+        create_view(height:800)
         create_choose_photo_button()
         create_activity_indicator()
         create_title_field()
@@ -65,6 +67,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         create_contact_field()
         create_memo_field()
         create_amount_field()
+        create_choose_currency_view()
         create_send_button()
         create_open_button()
     }
@@ -170,32 +173,39 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
     
     internal func create_amount_field() {
         let amount_guide_label = UILabel()
-        amount_guide_label.frame = CGRect(x: 20, y: 470, width: 70, height: 38)
+        amount_guide_label.frame = CGRect(x: 20, y: 500, width: 70, height: 38)
         amount_guide_label.text = "金額"
         self.scrollView.addSubview(amount_guide_label)
         
-        let mona_label = UILabel()
-        mona_label.frame = CGRect(x: 290, y: 470, width: 70, height: 38)
-        mona_label.text = "Mona"
-        self.scrollView.addSubview(mona_label)
         
-        amount_mona_field.frame = CGRect(x: 130, y: 470, width: 150, height: 38)
-        amount_mona_field.keyboardType = .decimalPad
-        amount_mona_field.borderStyle = .roundedRect
-        amount_mona_field.returnKeyType = .done
-        amount_mona_field.clearButtonMode = .always
-        amount_mona_field.delegate = self
-        self.scrollView.addSubview(amount_mona_field)
+        price_field.frame = CGRect(x: 130, y: 500, width: 130, height: 38)
+        price_field.keyboardType = .decimalPad
+        price_field.borderStyle = .roundedRect
+        price_field.returnKeyType = .done
+        price_field.clearButtonMode = .always
+        price_field.delegate = self
+        self.scrollView.addSubview(price_field)
     }
+    
+    internal func create_choose_currency_view() {
+        picker_view.delegate = self
+        picker_view.dataSource = self
+        picker_view.showsSelectionIndicator = true
+        
+        picker_view.frame = CGRect(x: 280, y: 470, width: 70, height: 100)
+        picker_view.selectRow(1, inComponent: 0, animated: true)
+    
+        self.scrollView.addSubview(self.picker_view)
+    }
+    
     
     internal func create_send_button() {
         let send_button = UIButton()
         send_button.setTitle("出品する", for: .normal)
-        send_button.backgroundColor = UIColor.orange
         send_button.sizeToFit()
         send_button.layer.cornerRadius = 10.0
         send_button.backgroundColor = UIColor(red: 250/255, green: 40/255, blue: 10/255, alpha: 0.9)
-        send_button.frame = CGRect(x: self.view.bounds.width/2-50, y: 550, width: 100, height: 38)
+        send_button.frame = CGRect(x: self.view.bounds.width/2-50, y: 570, width: 100, height: 38)
         send_button.addTarget(self, action: #selector(send_server(_:)), for: .touchUpInside)
         
         self.scrollView.addSubview(send_button)
@@ -212,7 +222,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         if first_character != "P" && first_character != "M" {status = false}
         if self.contact_field.text == "" {status = false}
         if self.memo_field.text == "" {status = false}
-        if self.amount_mona_field.text == "" {status = false}
+        if self.price_field.text == "" {status = false}
         
         
         if status {
@@ -233,7 +243,8 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
             "pay_address" : self.address_field.text!,
             "contact": self.contact_field.text!,
             "memo"    : self.memo_field.text!,
-            "amount_mona"  : self.amount_mona_field.text!
+            "price"  : self.price_field.text!,
+            "currency" : self.selected_currency
         ]
         
         print("contact is \(self.contact_field.text!)")
@@ -284,7 +295,7 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
                     self.address_field.text = ""
                     self.contact_field.text = ""
                     self.memo_field.text = ""
-                    self.amount_mona_field.text = ""
+                    self.price_field.text = ""
                 }
             }
             task.resume()
@@ -322,9 +333,9 @@ class ExhibitingViewController: UIViewController, UITabBarDelegate {
         let open_button = UIButton()
         open_button.titleLabel?.numberOfLines = 0
         open_button.setTitle("Monawallet\nを開く", for: .normal)
-        open_button.backgroundColor = UIColor.orange
         open_button.sizeToFit()
         open_button.layer.cornerRadius = 10.0
+        open_button.backgroundColor = UIColor.orange
         open_button.frame = CGRect(x: 230, y: 60, width: 110, height: 80)
         open_button.addTarget(self, action: #selector(open_monawallet(_:)), for: .touchUpInside)
         
@@ -382,8 +393,7 @@ extension ExhibitingViewController: CropViewControllerDelegate {
         cropViewController.dismiss(animated: true, completion: nil)
     }
     
-    func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
-        // キャンセル時
+    func cropViewController(_ cropViewController:CropViewController, didFinishCancelled cancelled: Bool) {
         cropViewController.dismiss(animated: true, completion: nil)
     }
 }
@@ -401,4 +411,38 @@ extension UIScrollView {
     }
     
     
+}
+
+
+extension ExhibitingViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return list.count
+    }
+    
+    // ドラムロールの各タイトル
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return list[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
+    {
+        let pickerLabel = UILabel()
+        pickerLabel.textAlignment = NSTextAlignment.center
+        pickerLabel.font = UIFont(name: "HiraKakuProN-W6", size: 14)
+        
+        pickerLabel.text = list[row]
+        self.selected_currency = list[row]
+        
+        return pickerLabel
+    }
+    
+     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.selected_currency = list[row]
+//        print("selected currency is \(self.selected_currency)")
+     }
 }

@@ -19,7 +19,8 @@
 	$pay_address = $_POST["pay_address"];
 	$contact = $_POST["contact"];
 	$memo = $_POST["memo"];
-	$amount_mona = $_POST["amount_mona"];
+	$price = $_POST["price"];
+	$currency = $_POST["currency"];
 	$global_image_path = "http://zihankimap.work/mona/img/".$file_name;
 
 	if (move_uploaded_file($_FILES["file"]["tmp_name"], $image_path)) 
@@ -32,7 +33,7 @@
 			"pay_address" => $pay_address,
 			"contact" => $contact,
 			"memo" => $memo,
-			"amount_mona" => $amount_mona
+			"price" => $price
 		]);
 	} else 
 	{
@@ -53,7 +54,8 @@
                 pay_address,
                 contact,
                 memo,
-                amount_mona,
+                price,
+                currency,
                 image_path,
                 alive
             )  VALUES (
@@ -62,7 +64,8 @@
                 '$pay_address',
                 '$contact',
                 '$memo',
-                '$amount_mona',
+                '$price',
+                '$currency',
                 '$global_image_path',
                 1
             )";

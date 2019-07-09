@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class GoodsListViewController: UIViewController, UITabBarDelegate {
     let cart_img = UIImage(named: "./cart.png")
-    let data_server = "http://zihankimap.work/mona//goods_list"
+    let data_server = "http://zihankimap.work/mona/goods_list"
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let scrollView = UIScrollView()
     var viewWidth:CGFloat = 0.0
@@ -42,11 +42,13 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
         self.view.backgroundColor = UIColor.white
         
         self.title = "商品リスト"
+        self.appDelegate.update_mona_jpy_price()
         self.get_data_from_server(url: self.data_server)
     }
     
     
     internal func get_data_from_server(url:String){
+        self.appDelegate.update_mona_jpy_price()
         let url = URL(string: url)!
         print("URL : \(url)")
         let request = URLRequest(url: url)
@@ -66,16 +68,17 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
                 let parsed_data = try JSON(data: json_Data)
                 let num_of_Q = parsed_data.count
                 self.create_view(num_of_Q: num_of_Q)
-                print(num_of_Q)
                 for i in 0 ..< parsed_data.count
                 {
-                    print((parsed_data.count-1)-i)
                     let id = parsed_data[(parsed_data.count-1)-i]["id"].stringValue
                     let title = parsed_data[(parsed_data.count-1)-i]["title"].stringValue
                     let contact = parsed_data[(parsed_data.count-1)-i]["contact"].stringValue
                     let image_path = parsed_data[(parsed_data.count-1)-i]["image_path"].stringValue
-                    let price = parsed_data[(parsed_data.count-1)-i]["amount_mona"].stringValue
-                    self.create_button(index:i, id: Int(id)!, title:title, contact:contact, price:price, image_path:image_path)
+                    let price = parsed_data[(parsed_data.count-1)-i]["price"].stringValue
+                    let currency = parsed_data[(parsed_data.count-1)-i]["currency"].stringValue
+                    print("price is \(price)")
+                    print("chosen currency is \(currency)")
+                    self.create_button(index:i, id: Int(id)!, title:title, contact:contact, price:price, currency:currency, image_path:image_path)
                 }
             } catch { print(error) }
         }
@@ -87,20 +90,20 @@ class GoodsListViewController: UIViewController, UITabBarDelegate {
         scrollView.frame = CGRect(x: 0, y: self.navigation_bar_height, width: viewWidth, height: viewHeight-self.navigation_bar_height)
         scrollView.contentSize = CGSize(width: Int(viewWidth), height: 100*(num_of_Q+1))
         scrollView.refreshControl = refreshControl
-        print("Created view for \(num_of_Q) Buttons")
         
         self.view.addSubview(scrollView)
     }
     
-    internal func create_button(index:Int, id:Int, title:String, contact:String, price:String, image_path:String) {
+    internal func create_button(index:Int, id:Int, title:String, contact:String, price:String, currency:String, image_path:String) {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "商品一覧", style: .plain, target: nil, action: nil)
+        let display_price = "\(price) \(currency)\n"
         let G_Button = UIButton()
-        print(image_path)
         let imageView = AsyncImageView(frame: CGRect(x: 0, y: 100*index, width: 100, height: 100))
         imageView.load_image(urlString: image_path)
-        
         imageView.image = self.image
-        let title_message = title + "\n" + price + "Mona\n" + contact
+        
+        
+        let title_message = title + "\n" + display_price + contact
         
         G_Button.frame = CGRect(x:100, y:100*index, width:Int(viewWidth-100), height:100)
         G_Button.titleLabel?.numberOfLines = 0

@@ -27,13 +27,14 @@
             if($value[alive] == 1 && $value[registered_address] == $registered_address)
             {
                 $temp = ['id'=>$value[id],
-                		 'timestamp'=>$value[timestamp],
+                         'timestamp'=>$value[timestamp],
                          'registered_address'=>$value[registered_address], 
                          'title'=>$value[title],
                          'pay_address'=>$value[pay_address],
                          'contact'=>$value[contact],
                          'memo'=>$value[memo],
-                         'amount_mona'=>$value[amount_mona],
+                         'price'=>$value[price],
+                         'currency'=>$value[currency],
                          'image_path'=>$value[image_path]
                         ];
                 $data[] = $temp;

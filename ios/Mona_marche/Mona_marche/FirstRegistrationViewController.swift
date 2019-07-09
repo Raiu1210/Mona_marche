@@ -17,8 +17,60 @@ class FirstRegistrationViewController : UIViewController {
         // Do any additional setup after loading the view.
         
         self.view.backgroundColor = UIColor.white
+        check_existing_monawallet()
+        create_open_button()
         create_address_input_field()
         create_registration_button()
+    }
+    
+    internal func check_existing_monawallet() {
+        if UIApplication.shared.canOpenURL(URL(string: "monawallet://")!) {
+            print("Monawallet インストール済み")
+        } else {
+            print("Monawallet インストールされていない")
+            let alert: UIAlertController = UIAlertController(title: "Monawalletがインストールされていません", message: "このアプリを使うにはMonawalletがないと、ちょっと不便かもしれません。App storeからMonawalletをダウンロードしますか？", preferredStyle:  UIAlertController.Style.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                let url = URL(string: "https://apps.apple.com/jp/app/monawallet/id1343235820")!
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:]) { success in
+                        if success {
+                            print("Launching \(url) was successful")
+                        }
+                    }
+                }
+            })
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("Canceled")
+            })
+            alert.addAction(cancelAction)
+            alert.addAction(defaultAction)
+            
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    internal func create_open_button() {
+        let open_button = UIButton()
+        open_button.titleLabel?.numberOfLines = 0
+        open_button.setTitle("Monawallet\nを開く", for: .normal)
+        open_button.backgroundColor = UIColor.orange
+        open_button.sizeToFit()
+        open_button.layer.cornerRadius = 10.0
+        open_button.frame = CGRect(x: 230, y: 60, width: 110, height: 80)
+        open_button.addTarget(self, action: #selector(open_monawallet(_:)), for: .touchUpInside)
+        
+        self.view.addSubview(open_button)
+    }
+    
+    @objc func open_monawallet(_ sender:UIButton) {
+        let url = URL(string: "monawallet://")!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
     
     internal func create_address_input_field() {

@@ -70,12 +70,15 @@ class MyGoodsListViewController: UIViewController, UITabBarDelegate {
                 print(num_of_Q)
                 for i in 0 ..< parsed_data.count
                 {
-                    print((parsed_data.count-1)-i)
                     let id = parsed_data[(parsed_data.count-1)-i]["id"].stringValue
                     let title = parsed_data[(parsed_data.count-1)-i]["title"].stringValue
+                    let contact = parsed_data[(parsed_data.count-1)-i]["contact"].stringValue
                     let image_path = parsed_data[(parsed_data.count-1)-i]["image_path"].stringValue
-                    let price = parsed_data[(parsed_data.count-1)-i]["amount_mona"].stringValue
-                    self.create_button(index:i, id: Int(id)!, title:title, price:price, image_path:image_path)
+                    let price = parsed_data[(parsed_data.count-1)-i]["price"].stringValue
+                    let currency = parsed_data[(parsed_data.count-1)-i]["currency"].stringValue
+                    print("price is \(price)")
+                    print("chosen currency is \(currency)")
+                    self.create_button(index:i, id: Int(id)!, title:title, contact:contact, price:price, currency:currency, image_path:image_path)
                 }
             } catch { print(error) }
         }
@@ -92,14 +95,15 @@ class MyGoodsListViewController: UIViewController, UITabBarDelegate {
         self.view.addSubview(scrollView)
     }
     
-    internal func create_button(index:Int, id:Int, title:String, price:String, image_path:String) {
+    internal func create_button(index:Int, id:Int, title:String, contact:String, price:String, currency:String, image_path:String) {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "あなたの出品一覧", style: .plain, target: nil, action: nil)
+        let display_price = "\(price) \(currency)\n"
         let G_Button = UIButton()
         print(image_path)
         let imageView = AsyncImageView(frame: CGRect(x: 0, y: 100*index, width: 100, height: 100))
         imageView.load_image(urlString: image_path)
         imageView.image = self.image
-        let title_message = title + "\n" + price + "Mona"
+        let title_message = title + "\n" + display_price
         
         G_Button.frame = CGRect(x:100, y:100*index, width:Int(viewWidth-100), height:100)
         G_Button.titleLabel?.numberOfLines = 0

@@ -29,7 +29,8 @@
                          'pay_address'=>$value[pay_address],
                          'contact'=>$value[contact],
                          'memo'=>$value[memo],
-                         'amount_mona'=>$value[amount_mona],
+                         'price'=>$value[price],
+                         'currency'=>$value[currency],
                          'image_path'=>$value[image_path]
                         ];
                 $data[] = $temp;

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var registrated_address_file_path:String = ""
     var registrated_address = ""
     var goods_json_string = ""
+    var mona_jpy_price = 0.0
     var selected_id:Int?
     var myNavigationController: UINavigationController?
     private var myTabBarController: UITabBarController!
@@ -24,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
-
+        self.update_mona_jpy_price()
+        
         let directory_path = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)[0]
         let file_Name = "registration_address.txt"
         self.registrated_address_file_path = directory_path + "/" + file_Name
@@ -79,6 +82,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         myTabBarController?.setViewControllers(myTabs as? [UIViewController], animated: false)
         self.window!.rootViewController = myTabBarController
         self.window!.makeKeyAndVisible()
+    }
+    
+    func update_mona_jpy_price() {
+        let bitbank_api = "https://public.bitbank.cc/mona_jpy/transactions"
+        let url = URL(string: bitbank_api)!
+        let request = URLRequest(url: url)
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in if error == nil, let data = data, let response = response as? HTTPURLResponse {
+            do {
+                let jsonString = String(data: data, encoding: String.Encoding.utf8) ?? ""
+                let json_Data: Data =  jsonString.data(using: String.Encoding.utf8)!
+                let parsed_data = try JSON(data: json_Data)
+                print("parsed_data is \(parsed_data["data"]["transactions"][0]["price"])")
+                self.mona_jpy_price = parsed_data["data"]["transactions"][0]["price"].doubleValue
+                print("mona price is \(self.mona_jpy_price)")
+            } catch { print(error) }
+            }
+            }.resume()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
