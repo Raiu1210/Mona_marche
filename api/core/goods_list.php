@@ -1,5 +1,5 @@
 <?php 
-	$mysqli = new mysqli();
+	$mysqli = new mysqli("localhost", "qkrc111094-2", "UWLtsK6w", "qkrc111094-2");
     if ($mysqli->connect_error)
     {
         echo $mysqli->connect_error;
@@ -13,21 +13,17 @@
 
     try
     {
-        $registered_address = $_GET['registered_address'];
-        $sql = "SELECT * FROM mona_marche_data 
-                WHERE registered_address = '$registered_address'";
-
+        $sql = "SELECT * FROM mona_marche_data";
     	$res = $mysqli->query($sql);
-
     	$data = [];
 
         foreach ($res as $value) 
         {
             $temp = array();
-            if($value[alive] == 1 && $value[registered_address] == $registered_address)
+            if($value[alive] == 1)
             {
                 $temp = ['id'=>$value[id],
-                         'timestamp'=>$value[timestamp],
+                		 'timestamp'=>$value[timestamp],
                          'registered_address'=>$value[registered_address], 
                          'title'=>$value[title],
                          'pay_address'=>$value[pay_address],
